@@ -32,7 +32,6 @@ try {
 }
     }
 
-
     private void displayFromAsset(String assetFileName) {
 
         try {
@@ -81,9 +80,6 @@ try {
     }
 
 }
-
-
-
 
 //    PDFView pdfView;
 //    @Override
