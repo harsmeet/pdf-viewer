@@ -23,24 +23,33 @@ public class MainActivity extends Activity implements OnPageChangeListener,OnLoa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+try {
+    pdfView = (PDFView) findViewById(R.id.pdfView);
+    displayFromAsset(SAMPLE_FILE);
 
-        pdfView = (PDFView) findViewById(R.id.pdfView);
-        displayFromAsset(SAMPLE_FILE);
+}catch (Exception e){
+    e.printStackTrace();
+}
     }
 
 
     private void displayFromAsset(String assetFileName) {
-        pdfFileName = assetFileName;
-        pdfView.fromAsset(SAMPLE_FILE)
-                .defaultPage(pageNumber)
-                .enableSwipe(true)
 
-                .swipeHorizontal(false)
-                .onPageChange(this)
-                .enableAnnotationRendering(true)
-                .onLoad(this)
-                .scrollHandle(new DefaultScrollHandle(this))
-                .load();
+        try {
+            pdfFileName = assetFileName;
+            pdfView.fromAsset(SAMPLE_FILE)
+                    .defaultPage(pageNumber)
+                    .enableSwipe(true)
+
+                    .swipeHorizontal(false)
+                    .onPageChange(this)
+                    .enableAnnotationRendering(true)
+                    .onLoad(this)
+                    .scrollHandle(new DefaultScrollHandle(this))
+                    .load();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 
@@ -57,6 +66,8 @@ public class MainActivity extends Activity implements OnPageChangeListener,OnLoa
         printBookmarksTree(pdfView.getTableOfContents(), "-");
 
     }
+
+
 
     public void printBookmarksTree(List<PdfDocument.Bookmark> tree, String sep) {
         for (PdfDocument.Bookmark b : tree) {
